@@ -1,0 +1,28 @@
+{
+  "name": "champion-friends",
+  "version": "1.0.0",
+  "description": "See READMe on git repo please",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukwallace/champion-friends.git"
+  },
+  "author": "wallace",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lukwallace/champion-friends/issues"
+  },
+  "homepage": "https://github.com/lukwallace/champion-friends#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-eslint": "^19.0.0",
+    "grunt-nodemon": "^0.4.2",
+    "grunt-shell": "^2.0.0"
+  },
+  "dependencies": {
+    "d3": "^4.2.7"
+  }
+}
