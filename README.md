@@ -22,6 +22,9 @@ Data stuff is interest
 
 #Installation
 
+#Things I am required by Riot to say abou this project
+[The title of Your Application] isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.
+
 #License
 I don't know anything about this yet
 
