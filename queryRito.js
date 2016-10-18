@@ -39,7 +39,8 @@ var getData = function () {
     });
     return Promise.all(promisedMasteries);
   })
-  .spread(function(masteries) {
+  .spread(function() {
+    var masteries = Array.prototype.slice.call(arguments);
     console.log('Got masteries');
     return masteries;
   })
