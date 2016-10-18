@@ -10,7 +10,7 @@ League of Legends is a MOBA game. Two teams of five players pick roles and chara
 #Steps towards Completion - Edited while in progress
 
 * ~~Figure out how to do grunt stuff from scratch~~ Cut out in interest of time.
-* ~~query champion mastery data from Riot API on client-side with jQuery AJAX~~ Bad idea.
+* ~~Query champion mastery data from Riot API on client-side w/ jQuery AJAX~~ Bad idea.
 * Move Riot API interfacing to server-side functionality
 * Study up on d3js node graph creation  
 * Organize data into format that can be plotted in a graph
