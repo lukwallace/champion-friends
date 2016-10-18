@@ -23,6 +23,6 @@
     "grunt-shell": "^2.0.0"
   },
   "dependencies": {
-    "d3": "^4.2.7"
+    "request": "^2.75.0"
   }
 }
