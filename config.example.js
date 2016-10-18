@@ -1,0 +1,5 @@
+module.exports = {
+  REGION: 'ENTER YOUR REGION HERE',
+  RIOT_API_KEY: 'YOUR_API_KEY',
+  PORT: 'PORT FOR SERVER TO RUN ON'
+};
