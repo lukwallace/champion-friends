@@ -6,3 +6,4 @@ node_modules
 
 ## Riot API ##
 riot-api-key.js
+config.js
