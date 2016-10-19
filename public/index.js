@@ -1,18 +1,15 @@
 
 var app = {};
 
-app.display = function(data) {
-  var width = 960;
-  var height = 500;
-
-  var svg = d3.select('body').append('svg')
+app.display = function(data, width, height) {
+  var svg = d3.select('svg')
       .attr('width', width)
       .attr('height', height);
 
   var force = d3.layout.force()
       .gravity(.05)
-      .distance(100)
-      .charge(-100)
+      .distance(200)
+      .charge(-500)
       .size([width, height]);
 
   force
@@ -32,12 +29,14 @@ app.display = function(data) {
       .call(force.drag);
 
   node.append('circle')
-      .attr('r', '5');
+      .attr('r', '16')
+      .attr('stroke', 'black')
+      .attr('fill', function(d) { return 'url(#' + d.id + ')'; });
 
   node.append('text')
-      .attr('dx', 12)
-      .attr('dy', '.35em')
-      .text(function(d) { return d.id; });
+      .attr('dx', '-1em')
+      .attr('dy', '4ex')
+      .text(function(d) { return d.name; });
 
   force.on('tick', function() {
     link.attr('x1', function(d) { return d.source.x; })
@@ -49,30 +48,71 @@ app.display = function(data) {
   });
 };
 
+app.loadImages = function(data) {
+  var championIndex = data.championIndex;
+  var defs = d3.select('body').append('svg').append('defs');
+  for (var id in championIndex) {
+    console.log(championIndex[id]);
+    var filename = championIndex[id].image.full.toLowerCase();
+    defs.append('pattern')
+          .attr('id', id)
+          .attr('x', 0)
+          .attr('y', 0)
+          .attr('height', 32)
+          .attr('width', 32)
+        .append('image')
+          .attr('x', 0)
+          .attr('y', 0)
+          .attr('width', 32)
+          .attr('height', 32)
+          .attr('href', './champions/' + filename);
+  }
+
+  // <pattern id="image" x="0" y="0" patternUnits="userSpaceOnUse" height="1" width="1">
+  //   <image x="0" y="0" xlink:href="url.png"></image>
+  // </pattern>
+
+};
+
 app.parseData = function(data) {
   console.log('ding!');
+  var masteries = data.masteryData;
+  var championIndex = data.championIndex;
 
   var nodes = [];
   var championSet = {};
-  data.forEach(function(masterySet) {
+  masteries.forEach(function(masterySet) {
     masterySet.forEach(function(mastery) {
-      championSet[mastery.championId] = true;
+      var elem = championSet[mastery.championId];
+      //only overwrite if they've played more
+      if (elem && elem.championPoints < mastery.championPoints) {
+        championSet[mastery.championId] = mastery;
+      }
+
+      if (elem === undefined) {
+        championSet[mastery.championId] = mastery;
+      }
     });
   });
-  var set = Object.keys(championSet);
-  set.forEach(function(id) {
-    nodes.push({id: id});
+  var championIDs = Object.keys(championSet);
+  championIDs.forEach(function(id) {
+    nodes.push({
+      id: id,
+      name: championIndex[id].name,
+      mastery: championSet[id],
+      image: championIndex[id].image.full
+    });
   });
 
   //Beware of duplicate links
   var links = [];
-  data.forEach(function(masterySet) {
+  masteries.forEach(function(masterySet) {
     for (var i = 0; i < masterySet.length; i++) {
       var source = masterySet[i].championId;
-      var sourceIndex = set.indexOf('' + source);
+      var sourceIndex = championIDs.indexOf('' + source);
       for (var j = i + 1; j < masterySet.length; j++) {
         var target = masterySet[j].championId;
-        var targetIndex = set.indexOf('' + target);
+        var targetIndex = championIDs.indexOf('' + target);
         links.push({
           source: sourceIndex,
           target: targetIndex
@@ -81,12 +121,10 @@ app.parseData = function(data) {
     }
   });
 
-  console.log(nodes);
-  console.log(links);
   return {nodes: nodes, links: links};
 };
 
-app.init = function() {
+app.init = function(width, height) {
   $.ajax({
     url: 'http://127.0.0.1:8000/masteries',
     type: 'GET',
@@ -94,8 +132,9 @@ app.init = function() {
     success: function(data) {
       console.log('Success!');
       console.log(data);
+      app.loadImages(data);
       var sanitized = app.parseData(data);
-      app.display(sanitized);
+      app.display(sanitized, width, height);
     },
     error: function(data) {
       if (data) { 
@@ -106,4 +145,4 @@ app.init = function() {
   });
 };
 
-app.init();
+app.init(1400, 900);
