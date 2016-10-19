@@ -13,10 +13,11 @@ League of Legends is a MOBA game. Two teams of five players pick roles and chara
 * ~~Query champion mastery data from Riot API on client-side w/ jQuery AJAX~~ Bad idea.
 * ~~Move Riot API interfacing to server-side functionality~~
 * ~~Study up on d3js node graph creation~~ Not enough v4 examples doing it in v3
-* ~~Organize data into format that can be plotted in a graph~~
+* ~~Organize data into format that can be plotted in a graph~~ Still needs more investivating
 * ~~Plot that graph~~
 * Touchup visuals
 * Add database stuff ... ? 
+* Find out if querying match data is better than mastery data
 
 
 #Motivation
