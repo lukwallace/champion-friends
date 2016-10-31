@@ -20,5 +20,9 @@ app.get('/masteries', function(req, res) {
   });
 });
 
+// app.get('/summonerName/*', function(req, res) {
+//   console.log(req.params);
+// });
+
 console.log('Server listening on', settings.PORT);
 app.listen(settings.PORT);
