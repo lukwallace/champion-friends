@@ -23,9 +23,17 @@ League of Legends is a MOBA game. Two teams of five players pick roles and chara
 #Motivation
 Data stuff is interest
 
+#Usage
+
+```sh
+npm install
+node server.js
+open public/index.html
+```
+
 #Installation
 
-#Things I am required by Riot to say abou this project
+#Things I am required by Riot to say about this project
 [The title of Your Application] isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.
 
 #License
