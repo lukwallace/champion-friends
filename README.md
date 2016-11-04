@@ -1,6 +1,10 @@
 # League Friends
 A d3js replication of this cool blog post I saw
 
+<p align="center">
+  <img src="/demo.gif?raw=true"/>
+</p>
+
 #Goal
 Create a (very minimal) web app that ~~replicates~~ attempts to simulate the functionality of this [blogpost](http://na.leagueoflegends.com/en/page/find-your-lunch-table-which-champs-are-friends).
 
